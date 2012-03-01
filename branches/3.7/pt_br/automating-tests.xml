@@ -1,67 +1,67 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <chapter id="automating-tests">
-  <title>Automating Tests</title>
+  <title>Automatizando Testes</title>
 
   <para>
-    Even good programmers make mistakes. The difference between a good
-    programmer and a bad programmer is that the good programmer uses tests
-    to detect his mistakes as soon as possible. The sooner you test for a
-    mistake the greater your chance of finding it and the less it will cost
-    to find and fix. This explains why leaving testing until just before
-    releasing software is so problematic. Most errors do not get caught at
-    all, and the cost of fixing the ones you do catch is so high that you
-    have to perform triage with the errors because you just cannot afford
-    to fix them all.
+    Até mesmo bons programadores cometem erros. A diferença entre um bom
+    programador e um mau programador é que o bom programador usa testes
+    para detectar seus erros o mais rápido possível. Quanto mais cedo você
+    testar, mais chances você tem de encontrar um grande erro e terá o menor
+    custo para achá-lo e corrigi-lo. Isso explica por que deixar para testar
+    o software depoius de lançá-lo é tão complicado. A maioria dos erros não
+    são pegos e o custo para corrigir os que você conseguir encontrar é tão 
+    grande quanto para realizar a triagem com os erros, pois você não pode   
+    se dar ao luxo de corrigir todos.
   </para>
 
   <para>
-    <indexterm><primary>Unit Test</primary></indexterm>
+    <indexterm><primary>Teste Unitário</primary></indexterm>
 
-    Testing with PHPUnit is not a totally different activity from what you
-    should already be doing. It is just a different way of doing it. The
-    difference is between <emphasis>testing</emphasis>, that is, checking
-    that your program behaves as expected, and <emphasis>performing a battery
-    of tests</emphasis>, runnable code-fragments that automatically test the
-    correctness of parts (units) of the software. These runnable
-    code-fragments are called unit tests.
+    Testar com o PHPUnit não é uma atividade totalmente diferente do que você
+    realmente deveria estar fazendo. É apenas uma maneira diferente de fazê-lo.
+    A diferença está entre <emphasis>testar</emphasis>, isto é, checar se o 
+    seu programa se comporta como esperado, e <emphasis>realizar uma bateria
+    de testes</emphasis>, fragmentos de código rodando para testar automaticamente
+    fragmentos de código de partes (inidades) do software. Estes fragmentos
+    de código são chamados de testes unitários.
   </para>
 
   <para>
-    In this chapter we will go from simple <literal>print</literal>-based
-    testing code to a fully automated test. Imagine that we have been asked
-    to test PHP's built-in <literal>array</literal>. One bit of functionality
-    to test is the function <literal>count()</literal>. For a newly created
-    array we expect the <literal>count()</literal> function to return
-    <literal>0</literal>. After we add an element, <literal>count()</literal>
-    should return <literal>1</literal>.
-    <xref linkend="automating-tests.examples.array-test.php" /> shows what
-    we want to test.
+    Neste capítulo nós iremos partir de um simpes codificação de testes baseado
+    em <literal>prints</literal> para um teste totalmente automatizado. Imagine-nos
+    pedindo pra testar um <literal>array</literal> embutido no códogo PHP. Uma
+    das funcionalidades para teste é a função <literal>count()</literal>. Para um
+    novo array criado, nós esperamos que a função <literal>count()</literal> retorne
+    o valor <literal>0</literal>. Depois de adicionarmos um elemento, a função
+    <literal>count()</literal>  dever retornar <literal>1</literal>.
+    O arqivo <xref linkend="automating-tests.examples.array-test.php" /> mostra o 
+    que queremos testar.
   </para>
 
   <example id="automating-tests.examples.array-test.php">
-    <title>Testing array operations</title>
+    <title>Testando operação com vetores</title>
     <programlisting><![CDATA[<?php
 $fixture = array();
-// $fixture is expected to be empty.
+// é esperado que $fixture seja vazio.
 
 $fixture[] = 'element';
-// $fixture is expected to contain one element.
+// é esperado que $fixture tenha um elemento.
 ?>]]></programlisting>
   </example>
 
   <para>
-    A really simple way to check whether we are getting the results we
-    expect is to print the result of <literal>count()</literal> before
-    and after adding the element (see
+    Uma maneira muito simples de verificar se estamos obtendo os resultados
+    esperados é "printar" o resultado do <literal>count()</literal> antes e 
+    depois de adicionar o elemento (veja 
     <xref linkend="automating-tests.examples.array-test2.php" />).
-    If we get <literal>0</literal> and then <literal>1</literal>,
-    <literal>array</literal> and <literal>count()</literal> behave as
-    expected.
+    Se nós recebemos <literal>0</literal> e, em seguida, <literal>1</literal>, 
+    a função <literal>count()</literal>, e consequentemente o <literal>array</literal>,
+    estão se comportando conforme esperado.
   </para>
 
   <example id="automating-tests.examples.array-test2.php">
-    <title>Using print to test array operations</title>
+    <title>Usando print para testar operação com array</title>
     <programlisting><![CDATA[<?php
 $fixture = array();
 print count($fixture) . "\n";
@@ -74,16 +74,17 @@ print count($fixture) . "\n";
   </example>
 
   <para>
-    Now, we would like to move from tests that require manual interpretation
-    to tests that can run automatically. In
-    <xref linkend="automating-tests.examples.array-test3.php" />, we write
-    the comparison of the expected and actual values into the test code and
-    print <literal>ok</literal> if the values are equal. If we ever see a
-    <literal>not ok</literal> message, we know something is wrong.
+    Agora, nós gostariamos de mover para os testes o que o manual nos sugere
+    ser necessário para interpretarmos um teste para que possa ser executado 
+    automaticamente. No arquivo <xref linkend="automating-tests.examples.array-test3.php" />
+    escrevemos o comparativo entre o valor experado e o valor atual dentro do
+    código de teste e escrevemos <literal>ok</literal> se os valores são iguais.
+    Se houver diferença veremos uma mensagem <literal>not ok</literal> e saberemos
+    que o teste falhou.
   </para>
 
   <example id="automating-tests.examples.array-test3.php">
-    <title>Comparing expected and actual values to test array operations</title>
+    <title>Comparando valores esperados e atual no teste de operação com vetores.</title>
     <programlisting><![CDATA[<?php
 $fixture = array();
 print count($fixture) == 0 ? "ok\n" : "not ok\n";
@@ -96,17 +97,17 @@ ok</screen>
   </example>
 
   <para>
-    <indexterm><primary>Assertions</primary></indexterm>
+    <indexterm><primary>Assertions (Afirmações)</primary></indexterm>
 
-    We now factor out the comparison of expected and actual values into a
-    function that raises an Exception when there is a discrepancy
-    (<xref linkend="automating-tests.examples.array-test4.php" />). This
-    gives us two benefits: the writing of tests becomes easier and we only
-    get output when something is wrong.
+    Agora vamos decompor a compraração dos valores esperado e a atual de uma
+    função que retorna uma excessão há uma discrepância 
+    (<xref linkend="automating-tests.examples.array-test4.php" />). Este nos dá
+    dois benefícios: os testes escritos tornam-se fáceis e nós apenas recebemos
+    a saída quando há um falha no teste.
   </para>
 
   <example id="automating-tests.examples.array-test4.php">
-    <title>Using an assertion function to test array operations</title>
+    <title>Usando uma função de afirmação para testar operações com vetor</title>
     <programlisting><![CDATA[<?php
 $fixture = array();
 assertTrue(count($fixture) == 0);
@@ -117,29 +118,29 @@ assertTrue(count($fixture) == 1);
 function assertTrue($condition)
 {
     if (!$condition) {
-        throw new Exception('Assertion failed.');
+        throw new Exception('Afirmação falsa.');
     }
 }
 ?>]]></programlisting>
   </example>
 
   <para>
-    <indexterm><primary>Automated Test</primary></indexterm>
+    <indexterm><primary>Teste Automatizado</primary></indexterm>
 
-    The test is now completely automated. Instead of just
-    <emphasis>testing</emphasis> as we did with our first version,
-    with this version we have an <emphasis>automated test</emphasis>.
+    Agora o teste está completamente automatizado. Em vez de apenas
+    <emphasis>testarmos</emphasis>, como fizemos na nossa primeira versão,
+    temos nesta versão um <emphasis>teste automatizado</emphasis>.
   </para>
 
   <para>
-    The goal of using automated tests is to make fewer mistakes. While your
-    code will still not be perfect, even with excellent tests, you will
-    likely see a dramatic reduction in defects once you start automating
-    tests. Automated tests give you justified confidence in your code. You
-    can use this confidence to take more daring leaps in design
-    (Refactoring), get along with your teammates better (Cross-Team Tests),
-    improve relations with your customers, and go home every night with
-    proof that the system is better now than it was this morning because of
-    your efforts.
+    O ganho de se usar testes automatizados é que você comente menos erros. 
+    Enquanto que seu código ainda não está perfeito, mesmo com excelentes testes, 
+    você irá gostar de ver uma redução drástica nos defeitos uma vez que  
+    iniciar os testes automatizados. Testes automáticos te dão justificativas
+    de confiabilidade do seu código. Você pode usar esta confiança para dar
+    saltos mais largos no desenho do software (Refactoring), ter um melhor
+    convívio com seus companheiros de equipe (Cross-Team Tests), melhorar o
+    relacionamento com seus clientes e ir para casa toda noite com a prova que
+    o sistema está melhor do que você o encontrou de manhã, graças aos seus esforços.
   </para>
 </chapter>
