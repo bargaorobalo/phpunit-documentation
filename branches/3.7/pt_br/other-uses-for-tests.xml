@@ -1,50 +1,48 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <chapter id="other-uses-for-tests">
-  <title>Other Uses for Tests</title>
+  <title>Outros Usos para Teste</title>
 
   <para>
-    Once you get used to writing automated tests, you will likely discover
-    more uses for tests. Here are some examples.
+    Depois de conseguir escrever testes automatizados, você descobrirá
+    facilmente mais usos para os testes. Aqui estão alguns exemplos.
   </para>
 
   <section id="other-uses-for-tests.agile-documentation">
-    <title>Agile Documentation</title>
+    <title>Documentação Ágil</title>
 
     <para>
-      <indexterm><primary>Agile Documentation</primary></indexterm>
-      <indexterm><primary>Automated Documentation</primary></indexterm>
+      <indexterm><primary>Documentação Ágil</primary></indexterm>
+      <indexterm><primary>Documentação Automatizada</primary></indexterm>
       <indexterm><primary>Extreme Programming</primary></indexterm>
       <indexterm><primary>TestDox</primary></indexterm>
 
-      Typically, in a project that is developed using an agile process,
-      such as Extreme Programming, the documentation cannot keep up with the
-      frequent changes to the project's design and code. Extreme Programming
-      demands <emphasis>collective code ownership</emphasis>, so all
-      developers need to know how the entire system works. If you are
-      disciplined enough to consequently use "speaking names" for your tests
-      that describe what a class should do, you can use PHPUnit's TestDox
-      functionality to generate automated documentation for your project based
-      on its tests. This documentation gives developers an overview of what
-      each class of the project is supposed to do.
+      Tipicamente, em um projeto que é desenvolvido usando um processo ágil,
+      como Extreme Programming (XP), a documentação não pode acompanhar as frequentes
+      mudanças de design do projeto e do código. O XP exige a <emphasis>
+      propriedade coletiva do código</emphasis>, assi, todos os desenvolvedores
+      precisam conhecer como o sistema funciona como um todo. Se você é disciplinado
+      o suficiente para, consequentemente, usar "nomes fáceis" para os seus 
+      testes que descrevam o que uma classe deve fazer, você pode usar a funcionalidade
+      TestDox do PHPUnit para gerar documentação automatica para o seu projeto que seja 
+      baseada nestes testes. Esta documentação dá aos desenvolvedores um visão geral
+      do que cada classe do projeto supõe fazer.
     </para>
 
     <para>
-      PHPUnit's TestDox functionality looks at a test class and all the test
-      method names and converts them from camel case PHP names to sentences:
-      <literal>testBalanceIsInitiallyZero()</literal> becomes "Balance is
-      initially zero". If there are several test methods whose names only
-      differ in a suffix of one or more digits, such as
-      <literal>testBalanceCannotBecomeNegative()</literal> and
-      <literal>testBalanceCannotBecomeNegative2()</literal>, the sentence
-      "Balance cannot become negative" will appear only once, assuming that
-      all of these tests succeed.
+      A funcionalidade TestDox do PHPUnit olha para uma classe de teste e todos
+      os nomes dos métodos de testes e os converte a parir do nome das sentenças:
+      <literal>testBalanceIsInitiallyZero()</literal> torna-se "Balance is 
+      initially zero" (<emphasis>O equilíbrio é inicialmente zero</emphasis>). 
+      Se há muitos métodos de teste com o mesmo nome, porém diferentes apenas de um
+      dígito, por exemplo <literal>testBalanceCannotBecomeNegative()</literal> e
+      <literal>testBalanceCannotBecomeNegative2()</literal>, a sentença será interpretada
+      apenas uma vez, assumindo que todos os testes foram executados com sucesso.
     </para>
 
     <para>
-      Let us take a look at the agile documentation generated for the
-      <literal>BankAccount</literal> class (from
-      <xref linkend="test-driven-development.bankaccount-example.examples.BankAccountTest.php" />):
+      Vamos dar uma olhada na documentação ágil gerada pela classe <literal>BankAccount</literal> 
+      (conforme <xref linkend="test-driven-development.bankaccount-example.examples.BankAccountTest.php" />):
     </para>
 
     <screen><userinput>phpunit --testdox BankAccountTest</userinput>
@@ -55,57 +53,55 @@ BankAccount
  [x] Balance cannot become negative</screen>
 
     <para>
-      Alternatively, the agile documentation can be generated in HTML or plain
-      text format and written to a file using the <literal>--testdox-html</literal>
-      and <literal>--testdox-text</literal> arguments.
+      Alternativamente, a documentação ágil pode ser gerada nor formato HTML, texto puro
+      ou escrito em um arquivo usando os argumentos <literal>--testdox-html</literal>
+      e <literal>--testdox-text</literal>.
     </para>
 
     <para>
-      <indexterm><primary>Documenting Assumptions</primary></indexterm>
+      <indexterm><primary>Documentando Hipóteses</primary></indexterm>
 
-      Agile Documentation can be used to document the assumptions you make
-      about the external packages that you use in your project. When you use
-      an external package, you are exposed to the risks that the package will
-      not behave as you expect, and that future versions of the package will
-      change in subtle ways that will break your code, without you knowing it.
-      You can address these risks by writing a test every time you make an
-      assumption. If your test succeeds, your assumption is valid. If you
-      document all your assumptions with tests, future releases of the
-      external package will be no cause for concern: if the tests succeed,
-      your system should continue working.
+      A documentação ágil pode ser usada para documentar as hipóteses feitas
+      sobre os pacotes externos que você usa no seu projeto. Quando você usa um
+      pacote externo, você está expondo os riscos que o pacote não se comporta
+      como você espera, e a futura versão do pacote mudará de maneira que o seu
+      código será quebrado, sem que você saiba. Você pode lidar com estes riscos,
+      escrevendo um teste cada vez que você fizer uma suposição. Se o seu teste 
+      executar com sucesso, sua suposição está válida. Se você documentar todas 
+      as suas suposições com testes, novas versões do seu pacote externo não serão
+      mais motivo de preocupação: se os testes executarem com sucesso, seu sistema
+      continuará trabalhando.
     </para>
   </section>
 
   <section id="other-uses-for-tests.cross-team-tests">
-    <title>Cross-Team Tests</title>
+    <title>Teste Cross-Team</title>
 
     <para>
-      When you document assumptions with tests, you own the tests. The
-      supplier of the package -- who you make assumptions about -- knows
-      nothing about your tests. If you want to have a closer relationship
-      with the supplier of a package, you can use the tests to communicate
-      and coordinate your activities.
+      Quando você documenta suposições nos testes, você possui os testes.
+      O fornecedor do pacote não conheçe nada sobre os seus testes. Se
+      você quer ter uma relação mais próxima com o fornecedor de um pacote, 
+      você pode usar os testes para comunicar e coordenar suas atividades.
     </para>
 
     <para>
-      When you agree on coordinating your activities with the supplier of a
-      package, you can write the tests together. Do this in such a way that
-      the tests reveal as many assumptions as possible. Hidden assumptions are
-      the death of cooperation. With the tests, you document exactly what you
-      expect from the supplied package. The supplier will know the package is
-      complete when all the tests run.
+      Quando você concorda em coordenar suas atividades com o fornecedor de um
+      pacote, você pode escrever os testes juntos. Isto pode ser feito de tal
+      maneira que os testes revelem tantas suposições quanto forem possíveis. 
+      As suposições ocultas são fatais para a cooperação. Com os testes, você 
+      documenta exatamente o que você espera do pacote enviado pelo fornecedor. 
+      O fornecedor saberá se o pacote está completo rodando todos os testes.
     </para>
 
     <para>
-      <indexterm><primary>Stubs</primary></indexterm>
-
-      By using stubs (see the chapter on "Mock Objects", earlier in this book),
-      you can further decouple yourself from the supplier: The job of the
-      supplier is to make the tests run with the real implementation of the
-      package. Your job is to make the tests run for your own code. Until
-      such time as you have the real implementation of the supplied package,
-      you use stub objects. Following this approach, the two teams can develop
-      independently.
+      <indexterm><primary>Pontas</primary></indexterm>
+ 
+      Ao utilizar ponta (veja o capítulo sobre "Burlar Objetos" anteriormente neste livro), 
+      você pode se dissociar ainda mais do fornecedor: o trabalho do fornecedor é fazer os
+      testes rodarem com uma implementação real do pacote. Seu trabalho é fazer os testes
+      rodarem no seu código. Até o momento em que você possui a implementação real do 
+      pacote enviado pelo fornecedor, você usrá objetos de ponta. Usando esta 
+      aproximação, os dois times podem desenvolver independentemente.
     </para>
   </section>
 </chapter>

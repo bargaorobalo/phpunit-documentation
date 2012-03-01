@@ -32,7 +32,7 @@
   <title>PHPUnit Manual</title>
 
   <bookinfo>
-    <pubdate>Edition for PHPUnit 3.7. Updated on <?dbtimestamp format="Y-m-d"?>.</pubdate>
+    <pubdate>Edição parar PHPUnit 3.7. Atualizado em <?dbtimestamp format="Y-m-d"?>.</pubdate>
 
     <author>
       <firstname>Sebastian</firstname>
@@ -52,7 +52,7 @@
     </copyright>
 
     <legalnotice>
-      <para>This work is licensed under the Creative Commons Attribution 3.0 Unported License.</para>
+      <para>Este trabalho é licenciado sobre a licença Creative Commons Attribution 3.0 Unported License.</para>
     </legalnotice>
   </bookinfo>
 
