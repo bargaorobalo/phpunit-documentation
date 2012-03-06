@@ -1,41 +1,43 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <chapter id="organizing-tests">
-  <title>Organizing Tests</title>
+  <title>Organizando os Testes</title>
 
   <para>
-    <indexterm><primary>Test Suite</primary></indexterm>
+    <indexterm><primary>Suíte de Teste</primary></indexterm>
 
-    One of the goals of PHPUnit (see <xref linkend="goals" />) is that tests
-    should be composable: we want to be able to run any number or combination
-    of tests together, for instance all tests for the whole project, or the
-    tests for all classes of a component that is part of the project, or just
-    the tests for a single class.
+    Uma das vantagens do PHPUnit (veja <xref linkend="goals" />) é que os teste
+    podem ser compostos: nós queremos estar aptos a rodar qualquer número ou 
+    combinações de testes ao mesmo tempo, para iniciar todos os testes para o
+    projeto inteiro, ou os testes para todas as classes de um componente que 
+    faz parte do projeto, ou apenas os testes para uma única classe.
   </para>
 
   <para>
-    PHPUnit supports different ways of organizing tests and composing them into
-    a test suite. This chapter shows the most commonly used approaches.
+    O PHPunit suporta diferentes maneiras para organizar os testes e compô-las dentro
+    de uma suíte de testes. Este capítulo mostrará as aboradagems mais comuns de
+    uso do PHPUnit.
   </para>
 
   <section id="organizing-tests.filesystem">
-    <title>Composing a Test Suite Using the Filesystem</title>
+    <title>Compondo uma Suíte de Teste usando o Sistema de Arquivos (Filesystem)</title>
 
     <para>
-      Probably the easiest way to compose a test suite is to keep all test case
-      source files in a test directory. PHPUnit can automatically discover and
-      run the tests by recursively traversing the test directory.
+      Provavelmente a forma mais fácil de compor uma suíte de teste é manter todos
+      os casos arquivos com os casos de teste em único diretório. O PHPUnit pode
+      encontrar encontrar automaticamente estes testes e executá-los percorrendo
+      recursivamente o diretório de teste.
     </para>
 
     <para>
-      Lets take a look at the test suite of the <ulink url="http://github.com/sebastianbergmann/php-object-freezer/">Object_Freezer</ulink>
-      library. Looking at this project's directory structure, we see that the
-      test case classes in the <filename>Tests</filename> directory mirror the
-      package and class structure of the System Under Test (SUT) in the
-      <filename>Object</filename> directory:
+      Vamos ver uma suúte de testes da biblioteca <ulink url="http://github.com/sebastianbergmann/php-object-freezer/">Object_Freezer</ulink>
+      Vendo a estrutura de diretório deste projeto, nós vemos que as classes com
+      os casos de teste estão no diretório <filename>Tests</filename> que é um
+      espelho da estrutura de pacotes e classes do sistema do qual o teste irá rodar (<emphasis>SUT em inglês</emphasis>).
+      Esta estrutura está no diretório <filename>Object</filename>:
     </para>
 
-    <screen>Object                              Tests
+    <screen>Objetos                              Testes
 |-- Freezer                         |-- Freezer
 |   |-- HashGenerator               |   |-- HashGenerator
 |   |   `-- NonRecursiveSHA1.php    |   |   `-- NonRecursiveSHA1Test.php
@@ -53,8 +55,8 @@
 `-- Freezer.php                     `-- FreezerTest.php</screen>
 
     <para>
-      To run all tests for the library we just need to point the PHPUnit
-      command-line test runner to the test directory:
+      Para executar todos os testes desta biblioteca, nós precisamos saber a 
+      linha de comando para rodar o PHPUnit no diretório de teste:
     </para>
 
     <screen><userinput>phpunit Tests</userinput>
@@ -69,15 +71,14 @@ OK (75 tests, 164 assertions)</screen>
 
     <note>
       <para>
-        If you point the PHPUnit command-line test runner to a directory it will
-        look for <filename>*Test.php</filename> files.
+        se você apontar a chamada do PHPUnit para rodar em um diretório, ele vai
+        procurar por arquivos do tipo <filename>*Test.php</filename>.
       </para>
     </note>
 
     <para>
-      To run only the tests that are declared in the <literal>Object_FreezerTest</literal>
-      test case class in <filename>Tests/FreezerTest.php</filename> we can use
-      the following command:
+      Para rodar apenas os casos de testes declarados na classe <literal>Object_FreezerTest</literal>,
+      você pode usar o seguinte comando:
     </para>
 
     <screen><userinput>phpunit Tests/FreezerTest</userinput>
@@ -90,8 +91,8 @@ Time: 0 seconds
 OK (28 tests, 60 assertions)</screen>
 
     <para>
-      For more fine-grained control of which tests to run we can use the
-      <literal>--filter</literal> switch:
+      Para um controle mais refinado dos testes executados, você pode usar
+      o atributo <literal>--filter</literal>:
     </para>
 
     <screen><userinput>phpunit --filter testFreezingAnObjectWorks Tests</userinput>
@@ -105,30 +106,30 @@ OK (1 test, 2 assertions)</screen>
 
     <note>
       <para>
-        A drawback of this approach is that we have no control over the order in
-        which the test are run. This can lead to problems with regard to test
-        dependencies, see <xref linkend="writing-tests-for-phpunit.test-dependencies"/>.
-        In the next section you will see how you can make the test execution
-        order explicit by using the XML configuration file.
+        Um incoveniente desta abordate é que nós não temos controle sobre a ordem 
+        em que os testes são executados. Este pode nós conduzir para problemas que
+        no que diz respeito as dependências dos testes, veja <xref linkend="writing-tests-for-phpunit.test-dependencies"/>.
+        Na próxima sessão você irá ver como você pode marcar explicitamente a ordem de execução 
+        usando um arquivo de comfiguração em XML.
       </para>
     </note>
   </section>
 
   <section id="organizing-tests.xml-configuration">
-    <title>Composing a Test Suite Using XML Configuration</title>
-    <indexterm><primary>XML Configuration</primary></indexterm>
+    <title>Compondo uma Suíte de Teste usando Configuração em XML</title>
+    <indexterm><primary>Configuração XML</primary></indexterm>
 
     <para>
-      PHPUnit's XML configuration file (<xref linkend="appendixes.configuration"/>)
-      can also be used to compose a test suite.
+      O arquivo de configuração do PHPUnit em XML (<xref linkend="appendixes.configuration"/>)
+      pode também ser usado para compor uma suíte de teste. O arquivo
       <xref linkend="organizing-tests.xml-configuration.examples.phpunit.xml"/>
-      shows a minimal example that will add all <literal>*Test</literal> classes
-      that are found in <filename>*Test.php</filename> files when the
-      <filename>Tests</filename> is recursively traversed.
+      mostra um exemplo mínimo onde adicionamos todas as classes <literal>*Test</literal> 
+      que forem encontradas nos arquivos <filename>*Test.php</filename> quando os 
+      <filename>Tests</filename> são percorridos recursivamente.
     </para>
 
     <example id="organizing-tests.xml-configuration.examples.phpunit.xml">
-      <title>Composing a Test Suite Using XML Configuration</title>
+      <title>Compondo uma Suíte de Teste usando Configuração em XML</title>
       <programlisting><![CDATA[<phpunit>
   <testsuites>
     <testsuite name="Object_Freezer">
@@ -139,11 +140,11 @@ OK (1 test, 2 assertions)</screen>
     </example>
 
     <para>
-      The order in which tests are executed can be made explicit:
+      A ordem em que os testes são executados podem ser explicitados:
     </para>
 
     <example id="organizing-tests.xml-configuration.examples.phpunit.xml2">
-      <title>Composing a Test Suite Using XML Configuration</title>
+      <title>Compondo uma Suíte de Teste usando Configuração em XML</title>
       <programlisting><![CDATA[<phpunit>
   <testsuites>
     <testsuite name="Object_Freezer">
