@@ -6,7 +6,7 @@
   <para>
     <indexterm><primary>Suíte de Teste</primary></indexterm>
 
-    Uma das vantagens do PHPUnit (veja <xref linkend="goals" />) é que os teste
+    Uma dos objetivos do PHPUnit (veja <xref linkend="goals" />) é que os teste
     podem ser compostos: nós queremos estar aptos a rodar qualquer número ou 
     combinações de testes ao mesmo tempo, para iniciar todos os testes para o
     projeto inteiro, ou os testes para todas as classes de um componente que 
