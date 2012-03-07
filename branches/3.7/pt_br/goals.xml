@@ -1,173 +1,173 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <chapter id="goals">
-  <title>PHPUnit's Goals</title>
+  <title>Objetivos do PHPUnit</title>
 
   <para>
-    So far, we only have two tests for the <literal>array</literal> built-in
-    and the <literal>count()</literal> function. When we start to test the
-    numerous <literal>array_*()</literal> functions PHP offers, we will need
-    to write a test for each of them. We could write the infrastructure for
-    all these tests from scratch. However, it is much better to write a
-    testing infrastructure once and then write only the unique parts of each
-    test. PHPUnit is such an infrastructure.
+    Até agora, nós temos apenas dois testes para o <literal>array</literal> embutido
+    e a função  <literal>count()</literal>. Quando começamos a testar as numerosas
+    funções <literal>array_*()</literal> que o PHP oferece, nós precisaremos escrever
+    um teste para cada uma delas. Poderíamos escrever a estrutra para todos estes
+    testes a partir do zero. Entretanto, é muito melhor escrever apenas uma infra-estrutura
+    testes e então escrever apenas uma parte única para cada deste. Esta é a
+    infra-estrutura do PHPUnit.
   </para>
 
   <para>
-    A framework such as PHPUnit has to resolve a set of constraints, some of
-    which seem always to conflict with each other. Simultaneously, tests
-    should be:
+    Um framework como o PHPUnit pode resolver um conjunto de restrições, alguns
+    dos quais parecem sempre em conflito uns com os outros. Simultaneamente, os 
+    testes devem ser:
   </para>
 
   <variablelist>
     <varlistentry>
-      <term><emphasis>Easy to learn to write.</emphasis></term>
+      <term><emphasis>Fácil de ler e escrever.</emphasis></term>
       <listitem>
         <para>
-          If it's hard to learn how to write tests, developers will not learn
-          to write them.
+          Se é difícil aprender como escrever testes, os desenvolvedores não irão
+          aprender a escrevê-los.
         </para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><emphasis>Easy to write.</emphasis></term>
+      <term><emphasis>Fácilidade na escrita.</emphasis></term>
       <listitem>
         <para>
-          If tests are not easy to write, developers will not write them.
+          Se os testes não são fáceis de escrever, os desenvenvolvedores não
+          irão fazê-los.
         </para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><emphasis>Easy to read.</emphasis></term>
+      <term><emphasis>Facilidade na leitura.</emphasis></term>
       <listitem>
         <para>
-          Test code should contain no extraneous overhead so that the test
-          itself does not get lost in noise that surrounds it.
+          Códigos de testes não deveriam conter sobrecargas estranhas de modo
+          que os testes não podem se perder no ruído que os sercam.
         </para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><emphasis>Easy to execute.</emphasis></term>
+      <term><emphasis>Facilidade na execução.</emphasis></term>
       <listitem>
         <para>
-          The tests should run at the touch of a button and present their
-          results in a clear and unambiguous format.
+          Os testes devem rodar com um simples toque de um botão e apresentar
+          seus resultados de modo claro e que não seja ambíguo.
         </para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><emphasis>Quick to execute.</emphasis></term>
+      <term><emphasis>Rápido para executar.</emphasis></term>
       <listitem>
         <para>
-          Tests should run fast so so they can be run hundreds or thousands
-          of times a day.
+          Os testes devem rodar rápido, de modo que eles possam ser executados
+          centenas ou milhares de vezes em um único dia.
         </para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><emphasis>Isolated.</emphasis></term>
+      <term><emphasis>Isolamento.</emphasis></term>
       <listitem>
         <para>
-          The tests should not affect each other. If the order in which the
-          tests are run changes, the results of the tests should not change.
+          Um teste não pode afetar outro. Se há mudança na ordem em que os testes são rodados,
+          o resultado destes tests não podem mudar.
         </para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><emphasis>Composable.</emphasis></term>
+      <term><emphasis>Composição.</emphasis></term>
       <listitem>
         <para>
-          We should be able to run any number or combination of tests together.
-          This is a corollary of isolation.
+          Devemos ser capazes de rodar juntos qualquer número ou combinação de testes.
+          Este é um corolário do isolamento.
         </para>
       </listitem>
     </varlistentry>
   </variablelist>
 
   <para>
-    There are two main clashes between these constraints:
+    Há dois empasses principais entre estas restrições:
   </para>
 
   <variablelist>
     <varlistentry>
-      <term><emphasis>Easy to learn to write versus easy to write.</emphasis></term>
+      <term><emphasis>Fácil de aprender a escrever versus fácilidade na escrita.</emphasis></term>
       <listitem>
         <para>
-          Tests do not generally require all the flexibility of a programming
-          language. Many testing tools provide their own scripting language
-          that only includes the minimum necessary features for writing tests.
-          The resulting tests are easy to read and write because they have no
-          noise to distract you from the content of the tests. However,
-          learning yet another programming language and set of programming
-          tools is inconvenient and clutters the mind.
+          Os testes, geralmente, não requerem toda a flexibilidade de uma  
+          linguagem de programação. Muitas ferramentas de testes fornecem 
+          sua própria linguagem que inclui apenas o mínimo de características 
+          necessária para escrever os testes. O resultado dos testes são fáceis
+          de ser lido e escrito porque eles não possuem ruído para destraí-lo 
+          com o conteúdo destes testes. Entretanto, aprender ainda outra linguagem
+          de programação e escolher as ferramentas de programação é incoveniente e 
+          irá deixar o programador confuso.
         </para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><emphasis>Isolated versus quick to execute.</emphasis></term>
+      <term><emphasis>Isolamento versus rapidez na execução.</emphasis></term>
       <listitem>
         <para>
-          If you want the results of one test to have no effect on the results
-          of another test, each test should create the full state of the world
-          before it begins to execute and return the world to its original
-          state when it finishes. However, setting up the world can take a
-          long time: for example connecting to a database and initializing it
-          to a known state using realistic data.
+          Se você quer que os resultados de um teste não possua efeito no resultado
+          de outro teste, cada teste de ve criar um estado completo do seu universo
+          antes de começar a executar e, após a finalização dos testes, retorná-lo
+          ao estado inicial. Entretanto, criar um universo pode levar muito tempo:
+          por exemplo, conectar um banco de dados e inicializá-lo em um estado
+          conhecido usando dados reais.
         </para>
       </listitem>
     </varlistentry>
   </variablelist>
 
   <para>
-    PHPUnit attempts to resolve these conflicts by using PHP as the testing
-    language. Sometimes the full power of PHP is overkill for writing little
-    straight-line tests, but by using PHP we leverage all the experience and
-    tools programmers already have in place. Since we are trying to convince
-    reluctant testers, lowering the barrier to writing those initial tests
-    is particularly important.
+    O PHPUnit tentará resolver estes conflitos usando o PHP como a linguagem
+    de testes. Às vezes todo o poder do PHP é um exageiro para escrever pequenos
+    testes, mas usando PHP aproveitamos toda experiência e ferramentas dos progamadores
+    já existente. Já que estamos tentado convencer os testadores relutantes, 
+    é importante diminuir as barreiras para se escrever testes iniciais.
   </para>
 
   <para>
-    PHPUnit errs on the side of isolation over quick execution. Isolated
-    tests are valuable because they provide high-quality feedback. You do
-    not get a report with a bunch of test failures, which were really caused
-    because one test at the beginning of the suite failed and left the world
-    messed up for the rest of the tests. This orientation towards isolated
-    tests encourages designs with a large number of simple objects. Each
-    object can be tested quickly in isolation. The result is better designs
-    <emphasis>and</emphasis> faster tests.
+    O PHPUnit peca na parte do isolamento em execuções rápidas. Testes isolados
+    são valiosos porque promovem um retorno de alta qualidade. Você não recebe
+    um relatório com um monte de falhas nos testes, que foram realmente causados
+    porque um dos testes inicializados na suíte de testes falhou e deixou o seu
+    universo de testes confuso para o restante dos testes. Esta orientação para
+    testes isolados incentiva projetos com um grande número de objetos simples.
+    Cada objeto pode ser isolado e testado rapidamente. O resultado são bons projeto
+    e testes rápidos.
   </para>
 
   <para>
-    PHPUnit assumes that most tests succeed and it is not worth reporting
-    the details of successful tests. When a test fails, that fact is worth
-    noting and reporting. The vast majority of tests should succeed and are
-    not worth commenting on except to count the number of tests that run.
-    This is an assumption that is really built into the reporting classes,
-    and not into the core of PHPUnit. When the results of a test run are
-    reported, you see how many tests were executed, but you only see details
-    for those that failed.
+    O PHPUnit assume que mais testes com sucesso e não vale a pena reportar
+    os detalhes dos testes bem sucedidos. Quando um teste falha, é importante
+    anotar este fato e reportá-lo. A grande maioria dos tesets devem executar 
+    com sucesso e não vale a pena comentá-lo, exceto para contabilizar o número
+    de testes que foram executados. Este é uma suposição do que realmente é construído
+    nas classes de relatório, e não dentro do código do PHPUnit. Então o resultado
+    da execução de um teste é reportado e você vê quantos testes foram executados, 
+    mas apenas verá detalhes para os testes que falharam.
   </para>
 
   <para>
-    Tests are expected to be fine-grained, testing one aspect of one object.
-    Hence, the first time a test fails, execution of the test halts, and
-    PHPUnit reports the failure. It is an art to test by running in many
-    small tests. Fine-grained tests improve the overall design of the system.
+    Os testes deverão ser refinados, testando um aspecto de um objeto. Por isso,
+    num primeiro momento um teste irá falhar, executando a suspenção dos testes, 
+    e o PHPUnit irá reportar as falhas. Esta é a arte de testar rodando pequenos testes.
+    Refinar os testes melhora a concepção do sistema como um todo.
   </para>
 
   <para>
-    When you test an object with PHPUnit, you do so only through the
-    object's public interface. Testing based only on publicly visible
-    behaviour encourages you to confront and solve difficult design problems
-    earlier, before the results of poor design can infect large parts of the
-    system.
+    Quando você testa um objeto com o PHPUnit, você vai fazê-lo somente pelos 
+    métodos públicos do ohjeto. Testes baseados apenas sobre o comportamento
+    público visível lhe encoraja a encarar e resolver difíceis de design, antes 
+    que os resultados de um projeto pobre afetem, em larga escala, o sistema.
   </para>
 </chapter>
