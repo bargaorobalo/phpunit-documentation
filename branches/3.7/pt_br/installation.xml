@@ -1,53 +1,52 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <chapter id="installation">
-  <title>Installing PHPUnit</title>
+  <title>Instalando o PHPUnit</title>
 
   <para>
-    PHPUnit should be installed using the PEAR Installer, the backbone of the
-    <ulink url="http://pear.php.net/">PHP Extension and Application
-    Repository</ulink> that provides a distribution system for PHP packages.
+    O PHPUnit pode ser instalado usando o instalador PEAR, a espinha dorsal do
+    <ulink url="http://pear.php.net/">Repositório de Extensões e Aplicações PHP</ulink>, sistema de distribuição e promoção 
+    de projetos em PHP.
   </para>
 
   <caution>
     <para>
-      Depending on your OS distribution and/or your PHP environment, you may
-      need to install PEAR or update your existing PEAR installation before
-      you can proceed with the instructions in this chapter.
+      Dependendo do seu sistema operacionao e/ou sua versão do PHP, você 
+      precisará instalar o PEAR ou atualizar a versão que você tem instalada
+      antes que você continuar com as instruções contidas neste capítulo.
     </para>
 
     <para>
-      <userinput>sudo pear upgrade PEAR</userinput> usually suffices to
-      upgrade an existing PEAR installation. The <ulink
-      url="http://pear.php.net/manual/en/installation.getting.php">PEAR
-      Manual</ulink> explains how to perform a fresh installation of PEAR.
+      O comando <userinput>sudo pear upgrade PEAR</userinput> é usualmente suficiente
+      para atualizar uma instalação existente do PEAR. O <ulink
+      url="http://pear.php.net/manual/en/installation.getting.php">Manual do PEAR</ulink>
+      explica como realizar uma nova instalação do PEAR.
     </para>
   </caution>
 
   <note>
     <para>
-      PHPUnit 3.7 requires PHP 5.3.3 (or later) but PHP 5.4.0 (or later) is
-      highly recommended.
+      O PHPUnit 3.7 requer a versão 5.3.3 (ou posterior) do PHP, mas a versão 5.4.0
+      (ou posterior) do PHP é altamente recomendada.
     </para>
 
     <para>
-      PHP_CodeCoverage, the library that is used by PHPUnit to collect and
-      process code coverage information, depends on Xdebug 2.0.5 (or later) but
-      Xdebug 2.2.0 (or later) is highly recommended.
+      A biblioteca PHP_CodeCoverage é utilziada pelo PHPUnit para recuperar e processar 
+      as informações do código, ela depende do XDebug versão 2.0.5 ou posterior, porém recomenda-se
+      a utilização da versão 2.2 do XDebug.
     </para>
   </note>
 
   <para>
-    The following two commands (which you may have to run as
-    <literal>root</literal>) are all that is required to install PHPUnit using
-    the PEAR Installer:
+    Os dois comandos seguintes (que deverá ser executado como <literal>root</literal>) 
+    é tudo que você precisa para instalar o PHPUnit usando o instalador PEAR:
   </para>
 
   <screen><userinput>pear config-set auto_discover 1</userinput>
 <userinput>pear install pear.phpunit.de/PHPUnit</userinput></screen>
 
   <para>
-    The following optional packages are available:
+   Os seguintes pacotes opcionais estão disponíveis:
   </para>
 
   <variablelist>
@@ -55,11 +54,11 @@
       <term><literal>DbUnit</literal></term>
       <listitem>
         <para>
-          DbUnit port for PHP/PHPUnit to support database interaction testing.
+          O DbUnit é porta para o PHP/PHPUnit suportar testes com interação com banco de dados.
         </para>
 
         <para>
-          This package can be installed using the following command:
+          Este pacote pode ser instalado usando o comando:
         </para>
 
         <screen><userinput>pear install phpunit/DbUnit</userinput></screen>
@@ -70,11 +69,11 @@
       <term><literal>PHPUnit_Selenium</literal></term>
       <listitem>
         <para>
-          Selenium RC integration for PHPUnit.
+          Integração do Selenium RC com o PHPUnit.
         </para>
 
         <para>
-          This package can be installed using the following command:
+          Este pacote pode ser instalado usando o comando:
         </para>
 
         <screen><userinput>pear install phpunit/PHPUnit_Selenium</userinput></screen>
@@ -85,11 +84,11 @@
       <term><literal>PHPUnit_Story</literal></term>
       <listitem>
         <para>
-          Story-based test runner for Behavior-Driven Development with PHPUnit.
+          Corretor de testes baseado em histórias para Behavior-Driven Development(BDD) com PHPUnit.
         </para>
 
         <para>
-          This package can be installed using the following command:
+          Este pacote pode ser instalado usando o comando:
         </para>
 
         <screen><userinput>pear install phpunit/PHPUnit_Story</userinput></screen>
@@ -100,12 +99,12 @@
       <term><literal>PHPUnit_SkeletonGenerator</literal></term>
       <listitem>
         <para>
-          Tool that can generate skeleton test classes from production code
-          classes and vice versa.
+          Ferramenta para gerar esqueleto de classes de testes baseado no fonte de uma classe
+          em produção e vice-versa.
         </para>
 
         <para>
-          This package can be installed using the following command:
+          Este pacote pode ser instalado usando o comando:
         </para>
 
         <screen><userinput>pear install phpunit/PHPUnit_SkeletonGenerator</userinput></screen>
@@ -116,11 +115,11 @@
       <term><literal>PHPUnit_TestListener_DBUS</literal></term>
       <listitem>
         <para>
-          A TestListener that sends events to DBUS.
+          Um TestListener que envia eventos para o DBUS.
         </para>
 
         <para>
-          This package can be installed using the following command:
+          Este pacote pode ser instalado usando o comando:
         </para>
 
         <screen><userinput>pear install phpunit/PHPUnit_TestListener_DBUS</userinput></screen>
@@ -131,11 +130,11 @@
       <term><literal>PHPUnit_TestListener_XHProf</literal></term>
       <listitem>
         <para>
-          A TestListener that uses XHProf for automated profiling of the tested code.
+          Um TestListener que usa XHProf para perfis automatizados para os códigos testados.
         </para>
 
         <para>
-          This package can be installed using the following command:
+          Este pacote pode ser instalado usando o comando:
         </para>
 
         <screen><userinput>pear install phpunit/PHPUnit_TestListener_XHProf</userinput></screen>
@@ -146,11 +145,11 @@
       <term><literal>PHPUnit_TicketListener_Fogbugz</literal></term>
       <listitem>
         <para>
-          A ticket listener that interacts with the Fogbugz issue API.
+          Um autidor de tickets que interage com a API do Fogbugz.
         </para>
 
         <para>
-          This package can be installed using the following command:
+          Este pacote pode ser instalado usando o comando:
         </para>
 
         <screen><userinput>pear install phpunit/PHPUnit_TicketListener_Fogbugz</userinput></screen>
@@ -161,11 +160,11 @@
       <term><literal>PHPUnit_TicketListener_GitHub</literal></term>
       <listitem>
         <para>
-          A ticket listener that interacts with the GitHub issue API.
+          Um auditor de tickets que interagem com a API do GitHub.
         </para>
 
         <para>
-          This package can be installed using the following command:
+          Este pacote pode ser instalado usando o comando:
         </para>
 
         <screen><userinput>pear install phpunit/PHPUnit_TicketListener_GitHub</userinput></screen>
@@ -176,11 +175,11 @@
       <term><literal>PHPUnit_TicketListener_GoogleCode</literal></term>
       <listitem>
         <para>
-          A ticket listener that interacts with the Google Code issue API.
+          Um auditor de tickets que interagem com a API do Google Code.
         </para>
 
         <para>
-          This package can be installed using the following command:
+          Este pacote pode ser instalado usando o comando:
         </para>
 
         <screen><userinput>pear install phpunit/PHPUnit_TicketListener_GoogleCode</userinput></screen>
@@ -191,11 +190,11 @@
       <term><literal>PHPUnit_TicketListener_Trac</literal></term>
       <listitem>
         <para>
-          A ticket listener that interacts with the Trac issue API.
+          Um auditor de tickets que interagem com a API do Trac.
         </para>
 
         <para>
-          This package can be installed using the following command:
+          Este pacote pode ser instalado usando o comando:
         </para>
 
         <screen><userinput>pear install phpunit/PHPUnit_TicketListener_Trac</userinput></screen>
@@ -206,12 +205,12 @@
       <term><literal>PHP_Invoker</literal></term>
       <listitem>
         <para>
-          A utility class for invoking callables with a timeout. This package is
-          required to enforce test timeouts in strict mode.
+          Uma classe utilitária para fazer chamadas de timeout. Este pacote é
+          obrigatório para reforçar testes de timeout em modo restrito.
         </para>
 
         <para>
-          This package can be installed using the following command:
+          Este pacote pode ser instalado usando o comando:
         </para>
 
         <screen><userinput>pear install phpunit/PHP_Invoker</userinput></screen>
@@ -220,8 +219,8 @@
   </variablelist>
 
   <para>
-    After the installation you can find the PHPUnit source files inside your
-    local PEAR directory; the path is usually
+    Antes da instalação você pode procurar os arquivos fontes do PHPUnit dentro
+    do seu diretório local do PEAR. Este diretório é, usualmente, <filename>/usr/lib/php/PHPUnit</filename>.
     <filename>/usr/lib/php/PHPUnit</filename>.
   </para>
 </chapter>
