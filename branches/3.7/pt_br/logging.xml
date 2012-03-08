@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <chapter id="logging">
-  <title>Logging</title>
+  <title>Gerando Log</title>
 
   <para>
-    <indexterm><primary>Logging</primary></indexterm>
+    <indexterm><primary>Log</primary></indexterm>
 
-    PHPUnit can produce several types of logfiles.
+    O PHPUnit pode produzir vários tipos de arquivos de log.
   </para>
 
   <section id="logging.xml">
-    <title>Test Results (XML)</title>
+    <title>Resultado dos Testes (XML)</title>
 
     <para>
-      The XML logfile for test results produced by PHPUnit is based upon the one
-      used by the <ulink url="http://ant.apache.org/manual/OptionalTasks/junit.html">JUnit
-      task for Apache Ant</ulink>. The following example shows the XML
-      logfile generated for the tests in <literal>ArrayTest</literal>:
+      Os arquivos XML de log resultantes dos testes realizados pelo PHPUnit está baseado
+      na forma usada pelo <ulink url="http://ant.apache.org/manual/OptionalTasks/junit.html">JUnit
+      task for Apache Ant</ulink>. Os exemplos a seguir mostram o arquivo de log gerado
+      para os testes da classe <literal>ArrayTest</literal>:
     </para>
 
     <screen><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
@@ -44,10 +44,10 @@
 </testsuites>]]></screen>
 
     <para>
-      The following XML logfile was generated for two tests,
-      <literal>testFailure</literal> and <literal>testError</literal>,
-      of a test case class named <literal>FailureErrorTest</literal> and
-      shows how failures and errors are denoted.
+      O arquivo XML de log a seguir foram gerados por dois testes,
+      <literal>testFailure</literal> e <literal>testError</literal>,
+      em uma classe de testes chamada <literal>FailureErrorTest</literal> e
+      mostra como as falhas e erros são mostrados.
     </para>
 
     <screen><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
@@ -89,13 +89,13 @@ Exception:
   </section>
 
   <section id="logging.tap">
-    <title>Test Results (TAP)</title>
+    <title>Resultado dos Testes(TAP)</title>
 
     <para>
-      The <ulink url="http://testanything.org/">Test Anything Protocol (TAP)</ulink>
-      is Perl's simple text-based interface between testing modules. The
-      following example shows the TAP logfile generated for the tests in
-      <literal>ArrayTest</literal>:
+      O teste chamado <ulink url="http://testanything.org/">Test Anything Protocol (TAP)</ulink>
+      <emphasis>(Qualquer protocolo de teste, em tradução livre)</emphasis> é uma simples 
+      interface entre módulos de testes escrita em PEARL. O próximo exemplo mostra o 
+      arquivo de log gerado TAP para os testes de <literal>ArrayTest</literal>:
     </para>
 
     <screen>TAP version 13
@@ -104,10 +104,10 @@ ok 2 - testArrayContainsAnElement(ArrayTest)
 1..2</screen>
 
     <para>
-      The following TAP logfile was generated for two tests,
-      <literal>testFailure</literal> and <literal>testError</literal>,
-      of a test case class named <literal>FailureErrorTest</literal> and
-      shows how failures and errors are denoted.
+      O arquivo TAP de log a seguir foram gerados por dois testes,
+      <literal>testFailure</literal> e <literal>testError</literal>,
+      em uma classe de testes chamada <literal>FailureErrorTest</literal> e
+      mostra como as falhas e erros são mostrados.
     </para>
 
     <screen><![CDATA[TAP version 13
@@ -124,12 +124,13 @@ not ok 2 - Error: testError(FailureErrorTest)
   </section>
 
   <section id="logging.json">
-    <title>Test Results (JSON)</title>
+    <title>Resultado de Testes (JSON)</title>
 
     <para>
-      The <ulink url="http://www.json.org/">JavaScript Object Notation (JSON)</ulink>
-      is a lightweight data-interchange format. The following example shows
-      the JSON messages generated for the tests in <literal>ArrayTest</literal>:
+      O JSON, <ulink url="http://www.json.org/">JavaScript Object Notation</ulink>,
+      é um formato simples de troca de informação entre sistemas. O exemplo a seguir
+      mostra a mesmagem gerada no formato JSON para os testes da classe 
+      <literal>ArrayTest</literal>:
     </para>
 
     <screen>{"event":"suiteStart","suite":"ArrayTest","tests":2}
@@ -158,13 +159,13 @@ not ok 2 - Error: testError(FailureErrorTest)
   </section>
 
   <section id="logging.codecoverage.xml">
-    <title>Code Coverage (XML)</title>
+    <title>Registro de Cobertura(XML)</title>
 
     <para>
-      The XML format for code coverage information logging produced by PHPUnit
-      is loosely based upon the one used by <ulink url="http://www.atlassian.com/software/clover/">
-      Clover</ulink>. The following example shows the XML
-      logfile generated for the tests in <literal>BankAccountTest</literal>:
+      O formato XML para o código de cobertura do log de informação produzido pelo PHPUnit
+      é baseado no uso do softere <ulink url="http://www.atlassian.com/software/clover/">
+      Clover</ulink>. O exemplo a seguir mostra o arquivo XML de log gerado pelo teste na classe
+      <literal>BankAccountTest</literal>:
     </para>
 
     <screen><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
@@ -205,28 +206,31 @@ not ok 2 - Error: testError(FailureErrorTest)
   </section>
 
   <section id="logging.codecoverage.text">
-    <title>Code Coverage (TEXT)</title>
+    <title>Registro de Cobertura (TEXT)</title>
 
     <para>
-      Human readable code coverage output for the command-line or a text file.
+      Um registro de cobertura legível pelo ser humado é produzido por linah de comando 
+      ou arquivo de texto.
+
       
-      The aim of this output format is to provide a quick coverage overview while
-      working on a small set of classes. For bigger projects this output can be
-      useful to get an quick overview of the projects coverage or when used with 
-      the <literal>--filter</literal> functionality.
+      O objetivo deste formato de saída é promover uma visão rápida da cobertura
+      enquanto trabalha em um pequeno conjunto de classes. Para projetos grandes
+      esta saída pode ser usual para buscar uma rápida revisão dos projetos cobertos
+      ou usando a funcionalidade <literal>--filter</literal>.
 
-      When used from the command-line by writing to <literal>php://stdout</literal>
-      this will honor the <literal>--colors</literal> setting.
+      Quando utilizado a partir da linha de comando para escrever na saída <literal>php://stdout</literal>
+      é bom que se use o comando <literal>--colors</literal>.
 
-      Writing to standard out is the default option when used from the command-line.
+      A opção padrão quando se usa linha de comando é a escrita na saída padrão do programa, que pode
+      ser um console ou algum programa específico usado para executar os testes. 
 
-      By default this will only show files that have at least one covered line.
-      This can only be changed via the <literal>showUncoveredFiles</literal> xml
-      configuration option. See <xref linkend="appendixes.configuration.logging"/>.
+      Por padrão, apenas são mostrados arquivos que tenham pelo menos uma linha coberta.
+      Este pode ser selecionado apenas pela opção  <literal>showUncoveredFiles</literal>
+      do arquivo XML de configuração.
     </para>
 
     <figure id="code-coverage-analysis.figures.Code_Coverage4.png">
-      <title>Code Coverage output on the command-line with colors</title>
+      <title>Saída de cobertura de código na linha de comando com cores</title>
 
       <graphic fileref="figures/Code_Coverage4.png" />
     </figure>
