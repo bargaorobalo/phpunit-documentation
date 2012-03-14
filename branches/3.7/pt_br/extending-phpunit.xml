@@ -1,42 +1,41 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <chapter id="extending-phpunit">
-  <title>Extending PHPUnit</title>
+  <title>Extendendo PHPUnit</title>
 
   <para>
-    PHPUnit can be extended in various ways to make the writing of tests
-    easier and customize the feedback you get from running tests. Here are
-    common starting points to extend PHPUnit.
+    O PHPUnit pode ser extendido de várias maneiras para fazer a escrita
+    dos testes mais fácil e customizar o retorno que você receberá o rodar
+    os testes. Aqui estão os pontos iniciais mais comuns para extender o PHPUnit.
   </para>
 
   <section id="extending-phpunit.PHPUnit_Framework_TestCase">
-    <title>Subclass PHPUnit_Framework_TestCase</title>
+    <title>Subclasse PHPUnit_Framework_TestCase</title>
 
     <para>
       <indexterm><primary>PHPUnit_Framework_TestCase</primary></indexterm>
 
-      Write custom assertions and utility methods in an abstract subclass of
-      <literal>PHPUnit_Framework_TestCase</literal> and derive your test case
-      classes from that class. This is one of the easiest ways to extend
-      PHPUnit.
+      Escreva métodos de acerto e utilitários customizados em uma subclasse abstrata
+      de <literal>PHPUnit_Framework_TestCase</literal> e derive sua classe de caso
+      de teste desta classe. Este é um dos meios mais fácies de extender o PHPUnit.
     </para>
   </section>
 
   <section id="extending-phpunit.custom-assertions">
-    <title>Write custom assertions</title>
+    <title>Escrever acertos customizados</title>
 
     <para>
-      When writing custom assertions it is the best practice to follow how
-      PHPUnit's own assertions are implemented. As you can see in
-      <xref linkend="extending-phpunit.examples.Assert.php"/>, the
-      <literal>assertTrue()</literal> method is just a wrapper around the
-      <literal>isTrue()</literal> and <literal>assertThat()</literal> methods:
-      <literal>isTrue()</literal> creates a matcher object that is passed on to
-      <literal>assertThat()</literal> for evaluation.
+      Quando escrevemos acertos customizados, esta é a melhor prática para 
+      entender como as afirmações próprias do PHPUnit são implementadas. Como
+      você pode ver no exemplo <xref linkend="extending-phpunit.examples.Assert.php"/>, 
+      o método <literal>assertTrue()</literal> é exatamente um invólucro sobre os
+      métodos <literal>isTrue()</literal> e <literal>assertThat()</literal>:
+      <literal>isTrue()</literal> cria um objeto combinado que é passado para
+      avaliação do método <literal>assertThat()</literal>.
     </para>
 
     <example id="extending-phpunit.examples.Assert.php">
-      <title>The assertTrue() and isTrue() methods of the PHPUnit_Framework_Assert class</title>
+      <title>Os métodos assertTrue() e isTrue() da classe PHPUnit_Framework_Assert</title>
       <programlisting><![CDATA[<?php
 abstract class PHPUnit_Framework_Assert
 {
@@ -72,14 +71,13 @@ abstract class PHPUnit_Framework_Assert
     </example>
 
     <para>
-      <xref linkend="extending-phpunit.examples.IsTrue.php"/> shows how
-      <literal>PHPUnit_Framework_Constraint_IsTrue</literal> extends the
-      abstract base class for matcher objects (or constraints),
-      <literal>PHPUnit_Framework_Constraint</literal>.
+      O exemplo <xref linkend="extending-phpunit.examples.IsTrue.php"/> mostra como a
+      classe <literal>PHPUnit_Framework_Constraint_IsTrue</literal> extende
+      a classe abstrata <literal>PHPUnit_Framework_Constraint</literal> para objetos combinados (ou restrições).
     </para>
 
     <example id="extending-phpunit.examples.IsTrue.php">
-      <title>The PHPUnit_Framework_Constraint_IsTrue class</title>
+      <title>A classe PHPUnit_Framework_Constraint_IsTrue</title>
       <programlisting><![CDATA[<?php
 class PHPUnit_Framework_Constraint_IsTrue extends PHPUnit_Framework_Constraint
 {
@@ -108,25 +106,23 @@ class PHPUnit_Framework_Constraint_IsTrue extends PHPUnit_Framework_Constraint
     </example>
 
     <para>
-      The effort of implementing the <literal>assertTrue()</literal> and
-      <literal>isTrue()</literal> methods as well as the
-      <literal>PHPUnit_Framework_Constraint_IsTrue</literal> class yields the
-      benefit that <literal>assertThat()</literal> automatically takes care of
-      evaluating the assertion and bookkeeping tasks such as counting it for
-      statistics. Furthermore, the <literal>isTrue()</literal> method can be
-      used as a matcher when configuring mock objects.
+      O esforço para implementar os métodos <literal>assertTrue()</literal> e
+      <literal>isTrue()</literal> tão bem como a classe <literal>PHPUnit_Framework_Constraint_IsTrue</literal> 
+      produzindo os benefícios que <literal>assertThat()</literal> automaticamente
+      se encarrega de avaliar a afirmação e contabilidade tem como contá-lo para estatísticas.
+      Além disso, o método <literal>isTrue()</literal> pode ser usado como uma combinação
+      durante a combinação de objetos fictícios.
     </para>
   </section>
 
   <section id="extending-phpunit.PHPUnit_Framework_TestListener">
-    <title>Implement PHPUnit_Framework_TestListener</title>
+    <title>Implementando PHPUnit_Framework_TestListener</title>
 
     <para>
       <indexterm><primary>PHPUnit_Framework_TestListener</primary></indexterm>
 
-      <xref linkend="extending-phpunit.examples.SimpleTestListener.php" />
-      shows a simple implementation of the <literal>PHPUnit_Framework_TestListener</literal>
-      interface.
+      O exemplo <xref linkend="extending-phpunit.examples.SimpleTestListener.php" />
+      mostra uma simples implementação da interface <literal>PHPUnit_Framework_TestListener</literal>.
     </para>
 
     <example id="extending-phpunit.examples.SimpleTestListener.php">
@@ -178,43 +174,42 @@ class SimpleTestListener implements PHPUnit_Framework_TestListener
     </example>
 
     <para>
-      In <xref linkend="appendixes.configuration.test-listeners"/> you can see
-      how to configure PHPUnit to attach your test listener to the test
-      execution.
+      No <xref linkend="appendixes.configuration.test-listeners"/> você pode ver 
+      como configurar o PHP para anexar seu ambiente de teste na execução dos testes.
     </para>
   </section>
 
   <section id="extending-phpunit.PHPUnit_Extensions_TestDecorator">
-    <title>Subclass PHPUnit_Extensions_TestDecorator</title>
+    <title>Subclasse PHPUnit_Extensions_TestDecorator</title>
 
     <para>
       <indexterm><primary>PHPUnit_Extensions_TestDecorator</primary></indexterm>
 
-      You can wrap test cases or test suites in a subclass of
-      <literal>PHPUnit_Extensions_TestDecorator</literal> and use the
-      Decorator design pattern to perform some actions before and after the
-      test runs.
+      Você pode agrupar os casos de teste ou suítes de teste em uma 
+      subclasse de <literal>PHPUnit_Extensions_TestDecorator</literal>  e usar
+      o <emphasis>Decorator design pattern</emphasis> para realizar algumas ações
+      antes e depois de rodar os testes.
     </para>
 
     <para>
       <indexterm><primary>PHPUnit_Extensions_RepeatedTest</primary></indexterm>
       <indexterm><primary>PHPUnit_Extensions_TestSetup</primary></indexterm>
 
-      PHPUnit ships with two concrete test decorators:
-      <literal>PHPUnit_Extensions_RepeatedTest</literal> and
-      <literal>PHPUnit_Extensions_TestSetup</literal>. The former is used to
-      run a test repeatedly and only count it as a success if all iterations
-      are successful. The latter was discussed in <xref linkend="fixtures" />.
+      O PHPUnit navega entre dois <emphasis>decorators</emphasis> concretos de teses:
+      <literal>PHPUnit_Extensions_RepeatedTest</literal> e
+      <literal>PHPUnit_Extensions_TestSetup</literal>. A forma usado para rodar um 
+      teste repetidas vezes e apenas contar o teste como sucesso se todas as iterações
+      forem bem sucedidas. O último foi discutido em <xref linkend="fixtures" />.
     </para>
 
     <para>
-      <xref linkend="extending-phpunit.examples.RepeatedTest.php" />
-      shows a cut-down version of the <literal>PHPUnit_Extensions_RepeatedTest</literal>
-      test decorator that illustrates how to write your own test decorators.
+      O exemplo <xref linkend="extending-phpunit.examples.RepeatedTest.php" />
+      mostra uma versao anterior do decorator <literal>PHPUnit_Extensions_RepeatedTest</literal>
+      que ilustra como escrever seu próprio memorizador de teste.
     </para>
 
     <example id="extending-phpunit.examples.RepeatedTest.php">
-      <title>The RepeatedTest Decorator</title>
+      <title>O Decorator RepeatedTest</title>
       <programlisting><![CDATA[<?php
 require_once 'PHPUnit/Extensions/TestDecorator.php';
 
@@ -255,25 +250,25 @@ class PHPUnit_Extensions_RepeatedTest extends PHPUnit_Extensions_TestDecorator
   </section>
 
   <section id="extending-phpunit.PHPUnit_Framework_Test">
-    <title>Implement PHPUnit_Framework_Test</title>
+    <title>Implementando PHPUnit_Framework_Test</title>
 
     <para>
       <indexterm><primary>PHPUnit_Framework_Test</primary></indexterm>
       <indexterm><primary>Data-Driven Tests</primary></indexterm>
 
-      The <literal>PHPUnit_Framework_Test</literal> interface is narrow and
-      easy to implement. You can write an implementation of
-      <literal>PHPUnit_Framework_Test</literal> that is simpler than
-      <literal>PHPUnit_Framework_TestCase</literal> and that runs
-      <emphasis>data-driven tests</emphasis>, for instance.
+      A interface <literal>PHPUnit_Framework_Test</literal> está limitada e fácil
+      de implementar. Você pode escrever uma implementação de 
+      <literal>PHPUnit_Framework_Test</literal> mais simples do que 
+      <literal>PHPUnit_Framework_TestCase</literal> e que roda
+      <emphasis>data-driven tests (DDT)</emphasis>, por exemplo.
     </para>
 
     <para>
-      <xref linkend="extending-phpunit.examples.DataDrivenTest.php" />
-      shows a data-driven test case class that compares values from a file
-      with Comma-Separated Values (CSV). Each line of such a file looks like
-      <literal>foo;bar</literal>, where the first value is the one we expect
-      and the second value is the actual one.
+      O exemplo <xref linkend="extending-phpunit.examples.DataDrivenTest.php" />
+      mostra uma classe de testes DDT que compara valores de um arquivo CSV.
+      Cada linha do arquivo possui o registro
+      <literal>foo;bar</literal>, enquanto que o primeiro valor é o valor esperado
+      e o segundo valor é o verdadeiro.
     </para>
 
     <example id="extending-phpunit.examples.DataDrivenTest.php">
